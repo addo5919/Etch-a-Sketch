@@ -1,5 +1,23 @@
-function colorGrid(e) {  //this is for each grid (div)
-    this.style.cssText+="background:black;";
+function changeToRandom(e) {  
+    
+    let grids=document.querySelectorAll(".items");
+    grids.forEach((grid)=> {
+        grid.addEventListener("mouseover",(e)=>{
+            let r=Math.floor(Math.random()*256);
+            let g=Math.floor(Math.random()*256);
+            let b=Math.floor(Math.random()*256); 
+            e.target.style.background=`rgb(${r},${g},${b})`;
+        });
+    });
+}
+
+function changeToBlack(e) {  
+    let grids=document.querySelectorAll(".items");
+    grids.forEach((grid)=> {
+        grid.addEventListener("mouseover",(e)=>{ 
+            e.target.style.background="black";
+        });
+    });
 }
 
 function changeBoardSize(e) {
@@ -35,11 +53,17 @@ function createBoard(noOfColumns) {                     //here no of columns = n
     }
     let grids=document.querySelectorAll(".items");
     grids.forEach((grid)=> {
-        grid.addEventListener("mouseover",colorGrid);
+        grid.addEventListener("mouseover",(e)=>{
+            e.target.style.cssText+="background:black;";
+        });
     });
 }
 
 createBoard(16);
 let input=document.querySelector("input");
-let button=document.querySelector("button");
-button.addEventListener("click",changeBoardSize);
+let boardSizeBtn=document.querySelector("#boardSizeBtn");
+let blackBtn=document.querySelector("#blackBtn");
+let randomBtn=document.querySelector("#randomBtn");
+boardSizeBtn.addEventListener("click",changeBoardSize);
+blackBtn.addEventListener("click",changeToBlack);
+randomBtn.addEventListener("click",changeToRandom);
