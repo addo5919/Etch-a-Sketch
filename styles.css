@@ -4,7 +4,7 @@
     display:flex;
     flex-wrap: wrap;
     width:500px;
-    height:500px;
+    min-height:500px; /*can grow in height if content exceeds 500px*/
 }
 
 body{
