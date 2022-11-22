@@ -4,11 +4,17 @@
     display:flex;
     flex-wrap: wrap;
     width:500px;
-    min-height:500px; /*can grow in height if content exceeds 500px*/
+    height:500px; 
+    margin:0 auto;
+    overflow: hidden;
+}
+
+.control {
+    margin:0 0 10px 460px;
 }
 
 body{
-    border:5px solid red;
+    /* border:5px solid red; */
 }
 
 .items {
