@@ -1,0 +1,17 @@
+
+#container {
+    border:3px solid blue;
+    display:flex;
+    flex-wrap: wrap;
+    width:500px;
+    height:500px;
+}
+
+body{
+    border:5px solid red;
+}
+
+.items {
+ flex-grow:1;
+ height: 29.3px; 
+}
