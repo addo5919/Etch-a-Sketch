@@ -54,8 +54,16 @@ let boardSizeBtn=document.querySelector("#boardSizeBtn");
 let blackBtn=document.querySelector("#blackBtn");
 let randomBtn=document.querySelector("#randomBtn");
 let eraseBtn=document.querySelector("#eraseBtn");
+let resetBtn=document.querySelector("#resetBtn");
 
 boardSizeBtn.addEventListener("click",changeBoardSize);
 blackBtn.addEventListener("click",(e)=> { color="black"; });
 randomBtn.addEventListener("click",(e)=> { color="random"; });
 eraseBtn.addEventListener("click",(e)=> { color="erase"; });
+resetBtn.addEventListener("click",(e)=> {
+    let grids=document.querySelectorAll(".items");
+    for(i=0;i<grids.length;i++) {
+        grids[i].style.background="";
+        color="black";
+    }
+});
