@@ -1,24 +1,4 @@
-function changeToRandom(e) {  
-    
-    let grids=document.querySelectorAll(".items");
-    grids.forEach((grid)=> {
-        grid.addEventListener("mouseover",(e)=>{
-            let r=Math.floor(Math.random()*256);
-            let g=Math.floor(Math.random()*256);
-            let b=Math.floor(Math.random()*256); 
-            e.target.style.background=`rgb(${r},${g},${b})`;
-        });
-    });
-}
-
-function changeToBlack(e) {  
-    let grids=document.querySelectorAll(".items");
-    grids.forEach((grid)=> {
-        grid.addEventListener("mouseover",(e)=>{ 
-            e.target.style.background="black";
-        });
-    });
-}
+let color="black"; //this variable is used to assign color to div's during mouseover event
 
 function changeBoardSize(e) {
     let noOfColumns=Number(input.value);
@@ -44,6 +24,20 @@ function createBoard(noOfColumns) {                     //here no of columns = n
         grid.className="items";
         // grid.textContent="a";
         grid.style.cssText="width:1px; height:31.3px;";// width is ignored because of flex-basis:0
+        grid.addEventListener("mouseover",(e)=>{
+            if(color=="black") {
+              e.target.style.background="black";
+            }
+            else if(color=="random") {
+                let r=Math.floor(Math.random()*256);
+                let g=Math.floor(Math.random()*256);
+                let b=Math.floor(Math.random()*256); 
+                e.target.style.background=`rgb(${r},${g},${b})`;
+            }
+            else if(color=="erase") {
+                e.target.style.background="";
+            }
+        });
         container.appendChild(grid);                                      
         if(i%noOfColumns==0) {
             let lineBreaker = document.createElement("div");
@@ -51,19 +45,17 @@ function createBoard(noOfColumns) {                     //here no of columns = n
             container.appendChild(lineBreaker);
         }
     }
-    let grids=document.querySelectorAll(".items");
-    grids.forEach((grid)=> {
-        grid.addEventListener("mouseover",(e)=>{
-            e.target.style.cssText+="background:black;";
-        });
-    });
 }
 
 createBoard(16);
+
 let input=document.querySelector("input");
 let boardSizeBtn=document.querySelector("#boardSizeBtn");
 let blackBtn=document.querySelector("#blackBtn");
 let randomBtn=document.querySelector("#randomBtn");
+let eraseBtn=document.querySelector("#eraseBtn");
+
 boardSizeBtn.addEventListener("click",changeBoardSize);
-blackBtn.addEventListener("click",changeToBlack);
-randomBtn.addEventListener("click",changeToRandom);
+blackBtn.addEventListener("click",(e)=> { color="black"; });
+randomBtn.addEventListener("click",(e)=> { color="random"; });
+eraseBtn.addEventListener("click",(e)=> { color="erase"; });
